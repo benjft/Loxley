@@ -1,14 +1,15 @@
-﻿namespace Loxley.iOS;
+﻿using Loxley.Extensions;
 
-public static class MauiProgram
-{
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
+namespace Loxley.iOS;
 
-		builder
-			.UseSharedMauiApp();
+public static class MauiProgram {
+    public static MauiApp CreateMauiApp() {
+        var builder = MauiApp.CreateBuilder();
 
-		return builder.Build();
-	}
+        builder
+            .UseSharedMauiApp()
+            .RegisterAppServices(typeof(MauiApp).Assembly);
+
+        return builder.Build();
+    }
 }
