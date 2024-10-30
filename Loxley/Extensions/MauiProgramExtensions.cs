@@ -20,9 +20,9 @@ public static class MauiProgramExtensions {
         return builder;
     }
 
-    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder builder, Assembly topLevelAssembly) {
+    public static MauiAppBuilder AddAppServices(this MauiAppBuilder builder, Assembly topLevelAssembly) {
         var services = builder.Services;
-        services.AddServicesFromAssemblyAndDependencies(topLevelAssembly);
+        services.AddAppServices(topLevelAssembly);
         return builder;
     }
 }

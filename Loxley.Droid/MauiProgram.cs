@@ -8,7 +8,7 @@ public static class MauiProgram {
 
         builder
             .UseSharedMauiApp()
-            .RegisterAppServices(typeof(MauiApp).Assembly);
+            .AddAppServices(typeof(MauiApp).Assembly);
 
         return builder.Build();
     }

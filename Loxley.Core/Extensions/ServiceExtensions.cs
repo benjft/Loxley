@@ -5,8 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Loxley.Core.Extensions;
 
 public static class ServiceExtensions {
-    public static IServiceCollection AddServicesFromAssemblyAndDependencies(
-        this IServiceCollection services, Assembly topLevelAssembly) {
+    public static IServiceCollection AddAppServices(this IServiceCollection services, Assembly topLevelAssembly) {
         var types = GetTypesFromLoadedAssembly(topLevelAssembly);
         foreach (var type in types) {
             var lifetime = type.GetCustomAttribute<ServiceLifetimeAttribute>()?.ServiceLifetime
