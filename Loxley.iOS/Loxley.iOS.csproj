@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Loxley\Loxley.csproj"/>
+        <ProjectReference Include="..\Loxley.App\Loxley.App.csproj" />
     </ItemGroup>
 
 </Project>

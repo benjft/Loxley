@@ -2,7 +2,7 @@
 using Loxley.Core.Extensions;
 using Microsoft.Extensions.Logging;
 
-namespace Loxley.Extensions;
+namespace Loxley.App.Extensions;
 
 public static class MauiProgramExtensions {
     public static MauiAppBuilder UseSharedMauiApp(this MauiAppBuilder builder) {

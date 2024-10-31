@@ -1,4 +1,4 @@
-﻿namespace Loxley;
+﻿namespace Loxley.App;
 
 public partial class MainPage : ContentPage
 {
