@@ -1,6 +1,8 @@
 ﻿<Solution>
+  <Folder Name="/Platforms/">
+    <Project Path="Loxley.Droid\Loxley.Droid.csproj" Type="Classic C#" />
+    <Project Path="Loxley.iOS\Loxley.iOS.csproj" Type="Classic C#" />
+  </Folder>
   <Project Path="Loxley.App\Loxley.App.csproj" Type="Classic C#" />
   <Project Path="Loxley.Core\Loxley.Core.csproj" Type="Classic C#" />
-  <Project Path="Loxley.Droid\Loxley.Droid.csproj" Type="Classic C#" />
-  <Project Path="Loxley.iOS\Loxley.iOS.csproj" Type="Classic C#" />
 </Solution>
