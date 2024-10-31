@@ -30,4 +30,17 @@
 	  <ProjectReference Include="..\Loxley.Core\Loxley.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<MauiXaml Update="Views\Pages\MainPage.xaml">
+			<SubType>Designer</SubType>
+		</MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Views\Pages\MainPage.xaml.cs">
+			<DependentUpon>MainPage.xaml</DependentUpon>
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+
 </Project>
