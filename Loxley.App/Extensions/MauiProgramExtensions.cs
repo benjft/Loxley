@@ -25,4 +25,19 @@ public static class MauiProgramExtensions {
         services.AddAppServices(topLevelAssembly);
         return builder;
     }
+
+    public static MauiAppBuilder AddPages(this MauiAppBuilder builder, Assembly topLevelAssembly) {
+        var services = builder.Services;
+
+        var pages = topLevelAssembly.GetTypesFromLoadedAssembly()
+                                    .Where(t => t.IsAssignableTo(typeof(Page))
+                                             && t is { IsAbstract: false, Namespace: not null }
+                                             && t.Namespace.StartsWith("Loxley"));
+
+        foreach (var page in pages) {
+            services.AddTransient(page);
+        }
+
+        return builder;
+    }
 }

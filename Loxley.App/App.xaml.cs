@@ -1,11 +1,11 @@
-﻿namespace Loxley.App;
+﻿using Loxley.App.Services.Interfaces;
 
-public partial class App : Application
-{
-	public App()
-	{
-		InitializeComponent();
+namespace Loxley.App;
 
-		MainPage = new AppShell();
-	}
+public partial class App : Application {
+    public App(INavigationService navigationService) {
+        InitializeComponent();
+
+        MainPage = navigationService.NavigateTo<MainPage>();
+    }
 }

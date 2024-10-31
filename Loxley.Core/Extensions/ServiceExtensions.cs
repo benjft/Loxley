@@ -6,7 +6,9 @@ namespace Loxley.Core.Extensions;
 
 public static class ServiceExtensions {
     public static IServiceCollection AddAppServices(this IServiceCollection services, Assembly topLevelAssembly) {
-        var types = GetTypesFromLoadedAssembly(topLevelAssembly);
+        var types = topLevelAssembly.GetTypesFromLoadedAssembly()
+                                    .Where(t => t.GetCustomAttributes<ServiceForAttribute>().Any());
+
         foreach (var type in types) {
             var lifetime = type.GetCustomAttribute<ServiceLifetimeAttribute>()?.ServiceLifetime
                         ?? ServiceLifetime.Transient;
@@ -17,16 +19,6 @@ public static class ServiceExtensions {
         }
 
         return services;
-    }
-
-    private static IEnumerable<Type> GetTypesFromLoadedAssembly(Assembly assembly) {
-        Assembly[] assemblies = [
-            assembly,
-            ..assembly.GetReferencedAssemblies()
-                      .Select(Assembly.Load)
-        ];
-
-        return assemblies.SelectMany(a => a.GetTypes().Where(t => t.GetCustomAttributes<ServiceForAttribute>().Any()));
     }
 
     private static IServiceCollection AddServiceWithLifetime(this IServiceCollection services, Type type, Type service,
