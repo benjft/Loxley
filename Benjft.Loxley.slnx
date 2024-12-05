@@ -1,0 +1,7 @@
+﻿<Solution>
+    <Project Path="Benjft.Loxley\Benjft.Loxley.csproj"/>
+    <Folder Name="Platforms">
+        <Project Path="Benjft.Loxley.Droid\Benjft.Loxley.Droid.csproj"/>
+        <Project Path="Benjft.Loxley.iOS\Benjft.Loxley.iOS.csproj"/>
+    </Folder>
+</Solution>
