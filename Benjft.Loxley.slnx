@@ -1,9 +1,11 @@
 ﻿<Solution>
   <Folder Name="/Platforms/">
-    <Project Path="Benjft.Loxley.Droid\Benjft.Loxley.Droid.csproj" Type="Classic C#" />
-    <Project Path="Benjft.Loxley.iOS\Benjft.Loxley.iOS.csproj" Type="Classic C#" />
+    <Project Path="Platforms\Benjft.Loxley.Droid\Benjft.Loxley.Droid.csproj" Type="Classic C#" />
+    <Project Path="Platforms\Benjft.Loxley.iOS\Benjft.Loxley.iOS.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/Util/">
+    <Project Path="Util\Benjft.Util.Debug\Benjft.Util.Debug.csproj" Type="Classic C#" />
+    <Project Path="Util\Benjft.Util.DependencyInjection\Benjft.Util.DependencyInjection.csproj" Type="Classic C#" />
   </Folder>
   <Project Path="Benjft.Loxley\Benjft.Loxley.csproj" Type="Classic C#" />
-  <Project Path="Benjft.Util.Debug\Benjft.Util.Debug.csproj" Type="Classic C#" />
-  <Project Path="Benjft.Util.DependencyInjection\Benjft.Util.DependencyInjection.csproj" Type="Classic C#" />
 </Solution>

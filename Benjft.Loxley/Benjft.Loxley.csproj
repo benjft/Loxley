@@ -48,8 +48,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Benjft.Util.Debug\Benjft.Util.Debug.csproj"/>
-        <ProjectReference Include="..\Benjft.Util.DependencyInjection\Benjft.Util.DependencyInjection.csproj"/>
+        <ProjectReference Include="..\Util\Benjft.Util.Debug\Benjft.Util.Debug.csproj"/>
+        <ProjectReference Include="..\Util\Benjft.Util.DependencyInjection\Benjft.Util.DependencyInjection.csproj"/>
     </ItemGroup>
 
 </Project>
