@@ -1,14 +1,20 @@
-﻿namespace Benjft.Loxley.Droid;
+﻿using Benjft.Loxley.Droid.Logging;
+using Benjft.Loxley.Extensions;
+using Benjft.Util.Debug.Helpers;
+using Microsoft.Extensions.Logging;
 
-public static class MauiProgram
-{
-	public static MauiApp CreateMauiApp()
-	{
-		var builder = MauiApp.CreateBuilder();
+namespace Benjft.Loxley.Droid;
 
-		builder
-			.UseSharedMauiApp();
+public static class MauiProgram {
+    public static MauiApp CreateMauiApp() {
+        var builder = MauiApp.CreateBuilder();
 
-		return builder.Build();
-	}
+        const LogLevel logLevel = DebugFlagHelper.IsDebug ? LogLevel.Debug : LogLevel.Information;
+        builder.Logging.AddProvider(new LogcatLoggerProvider())
+           .AddFilter("Benjft.Loxley", logLevel);
+
+        builder.UseSharedMauiApp();
+
+        return builder.Build();
+    }
 }

@@ -1,7 +1,8 @@
 using System.Reflection;
 using Benjft.Util.DependencyInjection.Attributes;
-using Benjft.Util.DependencyInjection.Exceptions;
+using Benjft.Util.DependencyInjection.Helpers;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Benjft.Util.DependencyInjection.Extensions;
 
@@ -10,7 +11,10 @@ public static class ServiceCollectionExtensions {
         this IServiceCollection serviceCollection,
         ServiceLifetime defaultLifetime = ServiceLifetime.Scoped,
         Func<Assembly, bool>? assemblyFilter = null) {
-        var types = GetServices(assemblyFilter);
+        var loggerProvider = serviceCollection.BuildServiceProvider().GetService<ILoggerProvider>();
+        var logger = loggerProvider?.CreateLogger("ServiceCollectionExtensions");
+
+        var types = GetServices(assemblyFilter).ToArray();
 
         foreach (var type in types) {
             var serviceType = type.GetCustomAttribute<ServiceTypeAttribute>()!.ServiceType;
@@ -19,8 +23,16 @@ public static class ServiceCollectionExtensions {
             var factoryMethod = GetServiceFactoryMethod(type, serviceType);
 
             if (factoryMethod != null) {
+                logger?.LogDebug(
+                    "Registering service {serviceType} with factory method {factoryMethod}",
+                    serviceType.Name,
+                    factoryMethod.Name);
                 serviceCollection.RegisterServiceFactory(serviceLifetime, serviceType, factoryMethod);
             } else {
+                logger?.LogDebug(
+                    "Registering service {serviceType} with implementation {factoryMethod}",
+                    serviceType.Name,
+                    type.Name);
                 serviceCollection.RegisterDefaultService(serviceLifetime, type, serviceType);
             }
         }
@@ -67,8 +79,9 @@ public static class ServiceCollectionExtensions {
 
         return;
 
-        object InvokeFactory(IServiceProvider sp) =>
-            factoryMethod.Invoke(null, [sp]) ?? throw ExceptionHelper.FactoryReturnedNull;
+        object InvokeFactory(IServiceProvider sp) {
+            return factoryMethod.Invoke(null, [sp]) ?? throw ExceptionHelper.FactoryReturnedNull;
+        }
     }
 
     private static IEnumerable<Type> GetServices(Func<Assembly, bool>? assemblyFilter) {

@@ -7,7 +7,7 @@ namespace Benjft.Loxley.Droid;
     Theme = "@style/Maui.SplashTheme",
     MainLauncher = true,
     LaunchMode = LaunchMode.SingleTop,
-    ConfigurationChanges = 
+    ConfigurationChanges =
         ConfigChanges.ScreenSize
       | ConfigChanges.Orientation
       | ConfigChanges.UiMode

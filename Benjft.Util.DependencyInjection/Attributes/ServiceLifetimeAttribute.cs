@@ -10,3 +10,9 @@ public class ServiceLifetimeAttribute(ServiceLifetime lifetime) : Attribute {
         lifetime = Lifetime;
     }
 }
+
+public class SingletonAttribute() : ServiceLifetimeAttribute(ServiceLifetime.Singleton);
+
+public class ScopedAttribute() : ServiceLifetimeAttribute(ServiceLifetime.Scoped);
+
+public class TransientAttribute() : ServiceLifetimeAttribute(ServiceLifetime.Transient);
